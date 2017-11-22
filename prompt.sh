@@ -20,7 +20,11 @@ find_git_dirty() {
   fi
 }
 
-PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
+# running git status can alter permissions/ownership unintentionally, as is also fairly expensive/slow
+# on large repos.
+#PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
+
+PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
 # Default Git enabled prompt with dirty state
 # export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
